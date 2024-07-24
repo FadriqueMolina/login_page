@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/widgets/my_button.dart';
-import 'package:login_page/widgets/my_textfield.dart';
+import "package:login_page/pages/login_page.dart";
+import "package:login_page/widgets/my_button.dart";
+import "package:login_page/widgets/my_textfield.dart";
 
-class LoginPage extends StatelessWidget {
-  final usernameTextFieldController = TextEditingController();
-  final PasswordTextFieldController = TextEditingController();
-  LoginPage({super.key});
+class Registerpage extends StatelessWidget {
+  final userNameTextFieldController = TextEditingController();
+  final passwordTextFieldController = TextEditingController();
+  final confirmPasswordTextFieldController = TextEditingController();
 
-  void _forgotPasswordTextClicked() {
-    print(usernameTextFieldController.text);
-  }
-
-  void _registerNowTextTapped() {
-    print(PasswordTextFieldController.text);
-  }
-
-  void loginButtonPressed() {
-    print("Login button pressed!");
-  }
+  Registerpage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +28,9 @@ class LoginPage extends StatelessWidget {
               height: 10,
             ),
 
-            //Mensage Welcome back
+            //Mensage lets create an account
             Text(
-              "Welcome back, you have been missed.",
+              "Let's create an account for you.",
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Theme.of(context).colorScheme.primary),
@@ -52,7 +43,7 @@ class LoginPage extends StatelessWidget {
             MyTextfield(
               hintText: "Username",
               isObscured: false,
-              controller: usernameTextFieldController,
+              controller: userNameTextFieldController,
             ),
             const SizedBox(
               height: 10,
@@ -62,34 +53,24 @@ class LoginPage extends StatelessWidget {
             MyTextfield(
                 hintText: "Password",
                 isObscured: true,
-                controller: PasswordTextFieldController),
+                controller: passwordTextFieldController),
             const SizedBox(
               height: 10,
             ),
 
-            Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20),
-                  child: GestureDetector(
-                    onTap: _forgotPasswordTextClicked,
-                    child: Text(
-                      "Forgot password?",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary),
-                    ),
-                  ),
-                )),
-
+            //textfield confirm password
+            MyTextfield(
+                hintText: "Confirm password",
+                isObscured: true,
+                controller: confirmPasswordTextFieldController),
             const SizedBox(
               height: 30,
             ),
 
-            //Boton login
+            //Boton register
             MyButton(
-              buttonText: "Login",
-              action: loginButtonPressed,
+              buttonText: "Register",
+              action: () {},
             ),
 
             const SizedBox(
@@ -101,7 +82,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Not a member?",
+                  "Already have an account?",
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.primary),
                 ),
@@ -109,9 +90,11 @@ class LoginPage extends StatelessWidget {
                   width: 5,
                 ),
                 GestureDetector(
-                  onTap: _registerNowTextTapped,
+                  onTap: () {
+                    Navigator.pushNamed(context, "/loginpage");
+                  },
                   child: Text(
-                    "Register now.",
+                    "Login now.",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Theme.of(context).colorScheme.primary),

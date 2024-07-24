@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/pages/LoginPage.dart';
+import 'package:login_page/pages/login_page.dart';
+import 'package:login_page/pages/register_page.dart';
 import 'package:login_page/themes/light_mode.dart';
 
 void main() {
@@ -15,6 +16,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: LoginPage(),
       theme: lightmode,
+      routes: {
+        "/registerpage": (context) => Registerpage(),
+        "/loginpage": (context) => LoginPage()
+      },
     );
   }
 }
