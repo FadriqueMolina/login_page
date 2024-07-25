@@ -3,12 +3,45 @@ import 'package:login_page/pages/register_page.dart';
 import 'package:login_page/widgets/my_button.dart';
 import 'package:login_page/widgets/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
-  final usernameTextFieldController = TextEditingController();
-  final passwordTextFieldController = TextEditingController();
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
-  void _forgotPasswordTextClicked() {}
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final usernameTextFieldController = TextEditingController();
+
+  final passwordTextFieldController = TextEditingController();
+
+  void _forgotPasswordTextClicked() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: const Column(
+                children: [
+                  Text("Please enter your email adress."),
+                  TextField(),
+                ],
+              ),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Email sent to user."),
+                        backgroundColor: Colors.white,
+                      ));
+                    },
+                    child: const Text("Recover")),
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Close"))
+              ],
+            ));
+  }
 
   void _registerNowTextTapped() {}
 
