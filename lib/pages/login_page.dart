@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/data/user_examples.dart';
 import 'package:login_page/widgets/my_button.dart';
+import 'package:login_page/widgets/my_dialog.dart';
 import 'package:login_page/widgets/my_textfield.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -15,35 +16,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final passwordTextFieldController = TextEditingController();
 
-  void _forgotPasswordTextClicked() {
-    showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: const Column(
-                children: [
-                  Text("Please enter your email adress."),
-                  TextField(),
-                ],
-              ),
-              actions: [
-                ElevatedButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Email sent to user."),
-                        backgroundColor: Colors.white,
-                      ));
-                    },
-                    child: const Text("Recover")),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Close"))
-              ],
-            ));
-  }
-
-  void _registerNowTextTapped() {}
+  void _forgotPasswordTextClicked() {}
 
   void loginButtonPressed() {
     if (usersData[usernameTextFieldController.text] ==
@@ -52,16 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       showDialog(
           context: context,
-          builder: (context) => AlertDialog(
-                title: Text("User doesn't exist"),
-                actions: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("Close"))
-                ],
-              ));
+          builder: (context) => const MyDialog(message: "User doesn't exist."));
     }
   }
 

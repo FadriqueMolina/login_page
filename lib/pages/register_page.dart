@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
+import "package:login_page/data/user_examples.dart";
 import "package:login_page/widgets/my_button.dart";
+import "package:login_page/widgets/my_dialog.dart";
 import "package:login_page/widgets/my_textfield.dart";
 
-class Registerpage extends StatelessWidget {
+class Registerpage extends StatefulWidget {
+  const Registerpage({super.key});
+
+  @override
+  State<Registerpage> createState() => _RegisterpageState();
+}
+
+class _RegisterpageState extends State<Registerpage> {
   final userNameTextFieldController = TextEditingController();
+
   final passwordTextFieldController = TextEditingController();
+
   final confirmPasswordTextFieldController = TextEditingController();
 
-  Registerpage({super.key});
+  void _registerButtonTapped() {
+    if (userNameTextFieldController.text.isNotEmpty &&
+        passwordTextFieldController.text ==
+            confirmPasswordTextFieldController.text) {
+      usersData[userNameTextFieldController.text] =
+          passwordTextFieldController.text;
+      showDialog(
+          context: context,
+          builder: (context) =>
+              const MyDialog(message: "User was successfully added."));
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => const MyDialog(
+              message: "Something came wrong with your credentials."));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +96,7 @@ class Registerpage extends StatelessWidget {
             //Boton register
             MyButton(
               buttonText: "Register",
-              action: () {},
+              action: _registerButtonTapped,
             ),
 
             const SizedBox(
