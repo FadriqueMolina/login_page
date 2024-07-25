@@ -19,6 +19,7 @@ class _RegisterpageState extends State<Registerpage> {
   final confirmPasswordTextFieldController = TextEditingController();
 
   void _registerButtonTapped() {
+    //TODO: Clean this code and and add more needed validations
     if (userNameTextFieldController.text.isNotEmpty &&
         passwordTextFieldController.text ==
             confirmPasswordTextFieldController.text) {
