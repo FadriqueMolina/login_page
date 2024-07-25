@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/pages/register_page.dart';
 import 'package:login_page/widgets/my_button.dart';
 import 'package:login_page/widgets/my_textfield.dart';
 
