@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/data/user_examples.dart';
 import 'package:login_page/widgets/my_button.dart';
 import 'package:login_page/widgets/my_textfield.dart';
 
@@ -44,7 +45,25 @@ class _LoginPageState extends State<LoginPage> {
 
   void _registerNowTextTapped() {}
 
-  void loginButtonPressed() {}
+  void loginButtonPressed() {
+    if (usersData[usernameTextFieldController.text] ==
+        passwordTextFieldController.text) {
+      Navigator.pushNamed(context, "/homepage");
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                title: Text("User doesn't exist"),
+                actions: [
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text("Close"))
+                ],
+              ));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

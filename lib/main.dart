@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/pages/home_page.dart';
 import 'package:login_page/pages/login_page.dart';
 import 'package:login_page/pages/register_page.dart';
 import 'package:login_page/themes/light_mode.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       theme: lightmode,
       routes: {
         "/registerpage": (context) => Registerpage(),
-        "/loginpage": (context) => LoginPage()
+        "/loginpage": (context) => LoginPage(),
+        "/homepage": (context) => HomePage()
       },
     );
   }
